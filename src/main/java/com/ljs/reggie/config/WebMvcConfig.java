@@ -1,9 +1,14 @@
 package com.ljs.reggie.config;
 
+
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+
 
 /**
  * 功能：
@@ -12,7 +17,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  */
 @Configuration
 @Slf4j
+
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+
     /**
      * 静态资源映射
      * @param registry
@@ -26,4 +33,5 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         log.info("静态资源映射成功。。。");
 
     }
+
 }
