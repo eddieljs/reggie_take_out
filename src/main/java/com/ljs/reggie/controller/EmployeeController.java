@@ -1,22 +1,17 @@
 package com.ljs.reggie.controller;
 
+import com.ljs.reggie.common.PageResult;
 import com.ljs.reggie.common.R;
 import com.ljs.reggie.entity.Employee;
-import com.ljs.reggie.properties.JwtProperties;
 import com.ljs.reggie.service.EmployeeService;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -30,8 +25,7 @@ import java.util.Map;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
-    @Autowired
-    private JwtProperties jwtProperties;
+
 
     /**
      * 员工登录
@@ -78,4 +72,31 @@ public class EmployeeController {
         return R.success("退出成功");
     }
 
+    /**
+     * 新增员工
+     * @param employee
+     * @return
+     */
+    @PostMapping
+    public R<String> save(HttpServletRequest request,@RequestBody Employee employee){
+        log.info("新增员工：{}",employee);
+        Long empId = (Long) request.getSession().getAttribute("employee");
+        employee.setCreateUser(empId);
+        employee.setUpdateUser(empId);
+        employeeService.add(employee);
+        return R.success("新增成功");
+    }
+    /**
+     * 员工分页查询
+     * @param page
+     * @param pageSize
+     * @param name
+     * @return
+     */
+    @GetMapping("/page")
+    public R<PageResult> page(int page,int pageSize,String name){
+        PageResult pageResult = employeeService.pageQuery(page,pageSize,name);
+
+        return R.success(pageResult);
+    }
 }
