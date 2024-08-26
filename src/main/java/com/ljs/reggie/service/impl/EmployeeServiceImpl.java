@@ -52,10 +52,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         //设置初始密码 并进行md5加密处理
         employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
         //设置其他值
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
         employee.setStatus(0);
-        employeeMapper.add(employee);
+        employeeMapper.insert(employee);
     }
     /**
      * 员工分页查询
@@ -80,6 +80,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateById(Employee employee) {
         employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查找员工
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        return employee;
     }
 
 }

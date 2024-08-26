@@ -1,4 +1,4 @@
-package com.ljs.reggie.context;
+package com.ljs.reggie.common;
 
 public class BaseContext {
 
@@ -15,5 +15,6 @@ public class BaseContext {
     public static void removeCurrentId() {
         threadLocal.remove();
     }
+
 
 }

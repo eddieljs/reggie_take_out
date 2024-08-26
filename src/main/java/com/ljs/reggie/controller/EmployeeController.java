@@ -1,5 +1,6 @@
 package com.ljs.reggie.controller;
 
+import com.ljs.reggie.common.BaseContext;
 import com.ljs.reggie.common.PageResult;
 import com.ljs.reggie.common.R;
 import com.ljs.reggie.entity.Employee;
@@ -83,9 +84,10 @@ public class EmployeeController {
     public R<String> save(HttpServletRequest request,@RequestBody Employee employee){
         log.info("新增员工：{}",employee);
         Long empId = (Long) request.getSession().getAttribute("employee");
+
         employee.setId(IdGenerator.nextId());
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
+//        employee.setCreateUser(empId);
+//        employee.setUpdateUser(empId);
         employeeService.add(employee);
         return R.success("新增成功");
     }
@@ -110,11 +112,23 @@ public class EmployeeController {
      */
     @PutMapping
     public R<String> update(HttpServletRequest request,@RequestBody Employee employee){
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(empId);
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(empId);
         employeeService.updateById(employee);
         log.info("员工信息修改：{}",employee);
         return R.success("员工信息修改成功");
+    }
+
+    /**
+     * 根据id查找员工
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public R<Employee> add(@PathVariable Long id){
+        Employee employee = employeeService.getById(id);
+
+        return employee == null ? R.error("无法查询该用户") : R.success(employee);
     }
 }

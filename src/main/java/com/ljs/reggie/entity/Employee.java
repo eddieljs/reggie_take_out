@@ -2,11 +2,18 @@ package com.ljs.reggie.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -31,10 +38,11 @@ public class Employee implements Serializable {
 
     private LocalDateTime updateTime;
 
-    @TableField(fill = FieldFill.INSERT)
+    //@TableField(fill = FieldFill.INSERT)
     private Long createUser;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    //@TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updateUser;
+
 
 }
