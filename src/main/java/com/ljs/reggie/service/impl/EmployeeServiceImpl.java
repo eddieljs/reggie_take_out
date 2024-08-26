@@ -73,4 +73,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total,result);
     }
 
+    /**
+     * 根据员工id修改信息
+     * @param employee
+     */
+    @Override
+    public void updateById(Employee employee) {
+        employeeMapper.update(employee);
+    }
+
 }

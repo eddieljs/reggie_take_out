@@ -26,4 +26,10 @@ public interface EmployeeService{
      * @return
      */
     PageResult pageQuery(int page, int pageSize, String name);
+
+    /**
+     * 根据员工id修改信息
+     * @param employee
+     */
+    void updateById(Employee employee);
 }
