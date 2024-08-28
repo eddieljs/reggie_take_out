@@ -3,6 +3,8 @@ package com.ljs.reggie.service;
 import com.ljs.reggie.common.PageResult;
 import com.ljs.reggie.entity.Category;
 
+import java.util.List;
+
 public interface CategoryService {
     /**
      * 新增分类
@@ -37,4 +39,11 @@ public interface CategoryService {
      * @param ids
      */
     void removeById(Long ids);
+
+    /**
+     * 条件查询分类数据
+     * @param category
+     * @return
+     */
+    List<Category> list(Category category);
 }

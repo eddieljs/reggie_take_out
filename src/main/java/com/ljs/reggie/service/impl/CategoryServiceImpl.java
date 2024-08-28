@@ -100,5 +100,16 @@ public class CategoryServiceImpl implements CategoryService {
         categoryMapper.deleteById(ids);
     }
 
+    /**
+     * 条件查询分类数据
+     * @param category
+     * @return
+     */
+    @Override
+    public List<Category> list(Category category) {
+        List<Category> list = categoryMapper.list(category);
+        return list;
+    }
+
 
 }

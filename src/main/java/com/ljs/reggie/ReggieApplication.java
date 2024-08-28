@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Slf4j
 @SpringBootApplication
 @ServletComponentScan//扫面webFilter注解
+@EnableTransactionManagement
 public class ReggieApplication  {
     public static void main(String[] args) {
         SpringApplication.run(ReggieApplication.class,args);

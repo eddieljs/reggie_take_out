@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 功能：
  * 作者：ljs
@@ -81,5 +83,16 @@ public class CategoryController {
 
         categoryService.removeById(ids);
         return R.success("删除成功");
+    }
+
+    /**
+     * 条件查询分类数据
+     * @param category
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Category>> list(Category category){
+        List<Category> list =  categoryService.list(category);
+        return R.success(list);
     }
 }

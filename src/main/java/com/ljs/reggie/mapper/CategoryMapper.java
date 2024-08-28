@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Mapper
 public interface CategoryMapper {
     /**
@@ -53,4 +55,12 @@ public interface CategoryMapper {
      */
     @Delete("delete from category where id = #{ids}")
     void deleteById(Long ids);
+
+    /**
+     * 条件查询分类数据
+     * @param category
+     * @return
+     */
+    @Select("select * from category where type = #{type} ORDER BY sort asc, update_time desc")
+    List<Category> list(Category category);
 }
